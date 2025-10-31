@@ -51,7 +51,7 @@ jobs:
           deno-version: v2.x
 
       - name: Run tests
-        run: deno test -A --coverage '**/*_test.ts'
+        run: deno test -A --permit-no-files --coverage '**/*_test.ts'
 
       - name: Upload lcov report
         uses: actions/upload-artifact@v4
