@@ -1,0 +1,6 @@
+# @all
+
+A monorepo for numerous packages and projects that doesn't naturally fit
+elsewhere. Here those little micro packages live.
+
+## Packages
