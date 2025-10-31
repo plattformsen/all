@@ -1,0 +1,7 @@
+{
+  "name": "@all/todo",
+  "version": "0.1.0",
+  "description": "A placeholder type representing a type that is yet to be defined.",
+  "license": "MIT",
+  "exports": "./mod.ts"
+}
