@@ -1,7 +1,7 @@
 {
   "name": "@all/awaitable",
   "version": "0.1.0",
-  "description": "A type that represents a value of type T that may be a Promise, PromiseLike or T.",
+  "description": "A type that represents a value of type T that may be PromiseLike or T.",
   "license": "MIT",
   "exports": "./mod.ts"
 }

@@ -1,7 +1,7 @@
 /**
  * `@all/awaitable` is a one-export module that provides the `Awaitable` type,
  * which represents a value that can be either a direct value of type `T`,
- * a `Promise` resolving to `T`, or a `PromiseLike` object.
+ * a `PromiseLike` object resolving to `T`.
  *
  * This type is particularly useful in scenarios where a function may return
  * either a synchronous value or an asynchronous one, allowing for greater
@@ -27,7 +27,7 @@
 
 /**
  * A type that represents a value of type {@link T} that may be a
- * {@link Promise}, {@link PromiseLike} or {@link T}.
+ * {@link PromiseLike} or {@link T}.
  *
  * @example
  * ```ts
@@ -44,6 +44,6 @@
  *   }
  * }
  */
-type Awaitable<T> = T | PromiseLike<T> | Promise<T>;
+type Awaitable<T> = T | PromiseLike<T>;
 
 export default Awaitable;
