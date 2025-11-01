@@ -37,22 +37,66 @@ export interface AttributeKey<T = unknown> {
   readonly name?: string;
 }
 
+/**
+ * Creates a new AttributeKey with a value type of
+ * {@link T}, with no attribute name.
+ *
+ * @returns A new AttributeKey instance.
+ */
 export function AttributeKey<T>(): AttributeKey<T>;
+
+/**
+ * Creates a new AttributeKey with a value type of
+ * {@link InstanceOf<C> InstanceType}<{@link C}>, with no
+ * attribute name.
+ *
+ * @param constructor The constructor function of the
+ *                    attribute type.
+ * @returns A new AttributeKey instance.
+ */
 export function AttributeKey<C extends Constructor>(
   constructor: C,
 ): AttributeKey<InstanceOf<C>>;
+
+/**
+ * Creates a new AttributeKey with a value type of
+ * {@link T}, with the given attribute name.
+ *
+ * @param name The name of the attribute.
+ * @returns A new AttributeKey instance.
+ */
 export function AttributeKey<T>(name: string): AttributeKey<T>;
-export function AttributeKey<
-  // deno-lint-ignore no-explicit-any
-  C extends abstract new (...args: any[]) => unknown,
->(
-  name: string,
-  constructor: C,
-): AttributeKey<InstanceOf<C>>;
+
+/**
+ * Creates a new AttributeKey with a value type of
+ * {@link InstanceOf<C> InstanceType}<{@link C}>, with
+ * the given attribute name.
+ *
+ * @param name The name of the attribute.
+ * @param constructor The constructor function of the
+ *                    attribute type.
+ * @returns A new AttributeKey instance.
+ */
 export function AttributeKey<C extends Constructor>(
   constructor: C,
   name: string,
 ): AttributeKey<InstanceOf<C>>;
+
+/**
+ * Creates a new AttributeKey with a value type of
+ * {@link InstanceOf<C> InstanceType}<{@link C}>, with
+ * the given attribute name.
+ *
+ * @param name The name of the attribute.
+ * @param constructor The constructor function of the
+ *                    attribute type.
+ * @returns A new AttributeKey instance.
+ */
+export function AttributeKey<C extends Constructor>(
+  name: string,
+  constructor: C,
+): AttributeKey<InstanceOf<C>>;
+
 export function AttributeKey<T>(
   this: AttributeKey<T>,
   arg1?: string | Constructor<T>,
