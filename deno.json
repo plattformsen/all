@@ -2,7 +2,8 @@
   "workspace": {
     "members": [
       "awaitable",
-      "todo"
+      "todo",
+      "attributes"
     ]
   }
 }

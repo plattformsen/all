@@ -6,5 +6,8 @@ reviews:
   profile: assertive
   auto_review:
     drafts: true
+  tools:
+    biome:
+      enabled: false
 chat:
   auto_reply: true
