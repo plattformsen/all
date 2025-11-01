@@ -1,4 +1,4 @@
-import type { StrictConstructorOf } from "./types.ts";
+import type { ConstructorOf, StrictConstructorOf } from "./types.ts";
 
 const ROOT_CLASS = Object.getPrototypeOf({}).constructor;
 
@@ -14,7 +14,7 @@ const ROOT_CLASS = Object.getPrototypeOf({}).constructor;
  */
 export function classOf(
   value: unknown,
-): StrictConstructorOf<unknown> | undefined {
+): ConstructorOf<unknown> | undefined {
   if (value === null || value === undefined) return undefined;
   return Object.getPrototypeOf(value)?.constructor;
 }
