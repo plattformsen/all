@@ -1,0 +1,7 @@
+{
+  "name": "@all/reflection",
+  "version": "0.1.0",
+  "description": "Reflection utilities.",
+  "license": "MIT",
+  "exports": "./mod.ts"
+}
