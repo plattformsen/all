@@ -262,7 +262,7 @@ export default class Attributes {
   /**
    * The string tag of this Attributes instance.
    */
-  public get [Symbol.toStringTag]() {
+  public get [Symbol.toStringTag](): string {
     return "Attributes";
   }
 }
