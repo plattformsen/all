@@ -4,27 +4,7 @@
 // `const key = new AttributeKey<number>();` is also valid.
 // `key instanceof AttributeKey` will be true in both cases.
 
-// deno-lint-ignore no-explicit-any
-type Constructor<T = any> =
-  // deno-lint-ignore no-explicit-any
-  | (abstract new (...args: any[]) => T)
-  // deno-lint-ignore no-explicit-any
-  | (new (...args: any[]) => T)
-  // deno-lint-ignore no-explicit-any
-  | { new (...args: any[]): T }
-  // deno-lint-ignore no-explicit-any
-  | { (...args: any[]): T };
-
-// deno-lint-ignore no-explicit-any
-type InstanceOf<C extends Constructor<any>> = C extends // deno-lint-ignore no-explicit-any
-{ (...args: any[]): infer T } ? T
-  // deno-lint-ignore no-explicit-any
-  : C extends new (...args: any[]) => infer T ? T
-  // deno-lint-ignore no-explicit-any
-  : C extends { new (...args: any[]): infer T } ? T
-  // deno-lint-ignore no-explicit-any
-  : C extends abstract new (...args: any[]) => infer T ? T
-  : never;
+import type { ConstructorOf, InstanceOf } from "@all/reflection";
 
 /**
  * An attribute key is used to uniquely identify a type-safe
@@ -54,7 +34,7 @@ export function AttributeKey<T>(): AttributeKey<T>;
  *                    attribute type.
  * @returns A new AttributeKey instance.
  */
-export function AttributeKey<C extends Constructor>(
+export function AttributeKey<C extends ConstructorOf>(
   constructor: C,
 ): AttributeKey<InstanceOf<C>>;
 
@@ -77,7 +57,7 @@ export function AttributeKey<T>(name: string): AttributeKey<T>;
  *                    attribute type.
  * @returns A new AttributeKey instance.
  */
-export function AttributeKey<C extends Constructor>(
+export function AttributeKey<C extends ConstructorOf>(
   constructor: C,
   name: string,
 ): AttributeKey<InstanceOf<C>>;
@@ -92,15 +72,15 @@ export function AttributeKey<C extends Constructor>(
  *                    attribute type.
  * @returns A new AttributeKey instance.
  */
-export function AttributeKey<C extends Constructor>(
+export function AttributeKey<C extends ConstructorOf>(
   name: string,
   constructor: C,
 ): AttributeKey<InstanceOf<C>>;
 
 export function AttributeKey<T>(
   this: AttributeKey<T>,
-  arg1?: string | Constructor<T>,
-  arg2?: string | Constructor<T>,
+  arg1?: string | ConstructorOf<T>,
+  arg2?: string | ConstructorOf<T>,
 ): AttributeKey<T> {
   const typeofArg1 = typeof arg1;
   const typeofArg2 = typeof arg2;
