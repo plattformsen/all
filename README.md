@@ -8,3 +8,4 @@ elsewhere. Here those little micro packages live.
 - [`@all/awaitable`](https://jsr.io/@all/awaitable)
 - [`@all/todo`](https://jsr.io/@all/todo)
 - [`@all/attributes`](https://jsr.io/@all/attributes)
+- [`@all/reflection`](https://jsr.io/@all/reflection)
