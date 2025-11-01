@@ -28,7 +28,8 @@ new (...args: any[]) => infer T ? T
  * function for type {@link T}. This is used by TypeScript's
  * primitive types (e.g., String, Number, Boolean, BigInt).
  */
-export type ConstructorOf<T> =
+// deno-lint-ignore no-explicit-any
+export type ConstructorOf<T = any> =
   | StrictConstructorOf<T>
   // deno-lint-ignore no-explicit-any
   | { (...args: any[]): T };
