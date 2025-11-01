@@ -1,7 +1,6 @@
 import type { StrictConstructorOf } from "./types.ts";
 
 const ROOT_CLASS = Object.getPrototypeOf({}).constructor;
-console.log(ROOT_CLASS); // [Function: Object]
 
 /**
  * Gets the class (constructor function) of a value.
