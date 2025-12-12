@@ -21,8 +21,6 @@
  * @module
  */
 
-// deno-lint-ignore-file no-process-global
-
 /**
  * A transformer function that takes an environment variable
  * key and its value, and transforms it into a desired
