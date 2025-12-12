@@ -9,3 +9,4 @@ elsewhere. Here those little micro packages live.
 - [`@all/todo`](https://jsr.io/@all/todo)
 - [`@all/attributes`](https://jsr.io/@all/attributes)
 - [`@all/reflection`](https://jsr.io/@all/reflection)
+- [`@all/env`](https://jsr.io/@all/env)

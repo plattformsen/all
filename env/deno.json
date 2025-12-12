@@ -1,0 +1,7 @@
+{
+  "name": "@all/env",
+  "version": "0.1.0",
+  "description": "Utilities for getting environment variables in Deno.",
+  "license": "MIT",
+  "exports": "./mod.ts"
+}
