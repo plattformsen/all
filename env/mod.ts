@@ -37,6 +37,10 @@ export type Transformer<I, O> = (
   value: I,
 ) => O;
 
+const proc = (globalThis as {
+  process?: { env: Record<string, string | undefined> };
+}).process;
+
 /**
  * Retrieves the value of an environment variable by its
  * key.
@@ -51,10 +55,8 @@ function getEnvironmentVariableValue(key: string): string | undefined {
     typeof Deno.env.get === "function"
   ) {
     return Deno.env.get(key);
-    // @ts-expect-error process exists on Node.js and Bun
-  } else if (typeof process !== "undefined" && process.env) {
-    // @ts-expect-error process exists on Node.js and Bun
-    return process.env[key];
+  } else if (typeof proc !== "undefined" && proc.env) {
+    return proc.env[key];
   }
   return undefined;
 }
