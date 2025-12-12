@@ -32,7 +32,7 @@
  *             `undefined`.
  * @template O The output type after transformation.
  */
-export type Transformer<I = string | undefined, O> = (
+export type Transformer<I, O> = (
   key: string,
   value: I,
 ) => O;
