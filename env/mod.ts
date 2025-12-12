@@ -168,7 +168,7 @@ export function string(_key: string, value: string): string | undefined {
  * @throws If the value cannot be parsed as a number.
  */
 export function number(key: string, value: string): number {
-  const parsed = Number(value);
+  const parsed = Number(value.trim());
 
   if (Number.isNaN(parsed)) {
     throw new Error(`Environment variable "${key}" is not a valid number.`);
@@ -194,7 +194,7 @@ export function number(key: string, value: string): number {
  * @throws If the value cannot be parsed as a boolean.
  */
 export function boolean(key: string, value: string): boolean {
-  const lower = value.toLowerCase();
+  const lower = value.trim().toLowerCase();
   if (
     lower === "1" ||
     lower === "true" ||
