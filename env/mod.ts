@@ -223,3 +223,120 @@ export function boolean(key: string, value: string): boolean {
     );
   }
 }
+
+/**
+ * Options for creating a CryptoKey.
+ */
+export interface CryptoKeyOptions {
+  /**
+   * The format of the key.
+   *
+   * @remarks
+   * Only "raw" is supported in this context.
+   *
+   * @default "raw"
+   */
+  format?: "raw";
+
+  /**
+   * The algorithm of the key.
+   */
+  algorithm:
+    | AlgorithmIdentifier
+    | RsaHashedImportParams
+    | EcKeyImportParams
+    | HmacImportParams
+    | AesKeyAlgorithm;
+
+  /**
+   * Whether the key is extractable.
+   *
+   * @default false
+   */
+  extractable?: boolean;
+
+  /**
+   * The intended usages of the key.
+   */
+  keyUsages: KeyUsage[];
+}
+
+const textEncoder = new TextEncoder();
+
+/**
+ * Transforms the environment variable value to a CryptoKey.
+ * @param options The options for creating the CryptoKey.
+ */
+export function cryptoKey(
+  options: CryptoKeyOptions,
+): Transformer<string, Promise<CryptoKey>> {
+  return async (_key: string, value: string): Promise<CryptoKey> => {
+    const rawKey = textEncoder.encode(value);
+    return await crypto.subtle.importKey(
+      options.format ?? "raw",
+      rawKey,
+      options.algorithm,
+      options.extractable ?? false,
+      options.keyUsages,
+    );
+  };
+}
+
+/**
+ * Predefined CryptoKey transformer for HMAC with SHA-256.
+ */
+export const Sha256HmacCryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "HMAC", hash: "SHA-256" },
+    keyUsages: ["sign", "verify"],
+  });
+
+/**
+ * Predefined CryptoKey transformer for HMAC with SHA-512.
+ */
+export const Sha512HmacCryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "HMAC", hash: "SHA-512" },
+    keyUsages: ["sign", "verify"],
+  });
+
+/**
+ * Predefined CryptoKey transformer for AES-GCM-128.
+ *
+ * @remarks
+ * The key length must be 16 bytes (128 bits).
+ */
+export const AesGcm128CryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "AES-GCM", length: 128 },
+    keyUsages: ["encrypt", "decrypt"],
+  });
+
+/**
+ * Predefined CryptoKey transformer for AES-GCM-192.
+ *
+ * @remarks
+ * The key length must be 24 bytes (192 bits).
+ */
+export const AesGcm192CryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "AES-GCM", length: 192 },
+    keyUsages: ["encrypt", "decrypt"],
+  });
+
+/**
+ * Predefined CryptoKey transformer for AES-GCM-256.
+ *
+ * @remarks
+ * The key length must be 32 bytes (256 bits).
+ */
+export const AesGcm256CryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "AES-GCM", length: 256 },
+    keyUsages: ["encrypt", "decrypt"],
+  });
