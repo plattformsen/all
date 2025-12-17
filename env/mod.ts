@@ -283,26 +283,29 @@ export function cryptoKey(
 /**
  * Predefined CryptoKey transformer for HMAC with SHA-256.
  */
-export const Sha256HmacCryptoKey = cryptoKey({
-  format: "raw",
-  algorithm: { name: "HMAC", hash: "SHA-256" },
-  keyUsages: ["sign", "verify"],
-});
+export const Sha256HmacCryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "HMAC", hash: "SHA-256" },
+    keyUsages: ["sign", "verify"],
+  });
 
 /**
  * Predefined CryptoKey transformer for HMAC with SHA-512.
  */
-export const Sha512HmacCryptoKey = cryptoKey({
-  format: "raw",
-  algorithm: { name: "HMAC", hash: "SHA-512" },
-  keyUsages: ["sign", "verify"],
-});
+export const Sha512HmacCryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "HMAC", hash: "SHA-512" },
+    keyUsages: ["sign", "verify"],
+  });
 
 /**
  * Predefined CryptoKey transformer for AES-GCM.
  */
-export const AesGcmCryptoKey = cryptoKey({
-  format: "raw",
-  algorithm: { name: "AES-GCM" },
-  keyUsages: ["encrypt", "decrypt"],
-});
+export const AesGcmCryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "AES-GCM" },
+    keyUsages: ["encrypt", "decrypt"],
+  });
