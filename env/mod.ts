@@ -232,9 +232,11 @@ export interface CryptoKeyOptions {
    * The format of the key.
    *
    * @remarks
-   * JWK format is not supported.
+   * Only "raw" is supported in this context.
+   *
+   * @default "raw"
    */
-  format: Exclude<KeyFormat, "jwk">;
+  format?: "raw";
 
   /**
    * The algorithm of the key.
@@ -271,7 +273,7 @@ export function cryptoKey(
   return async (_key: string, value: string): Promise<CryptoKey> => {
     const rawKey = textEncoder.encode(value);
     return await crypto.subtle.importKey(
-      options.format,
+      options.format ?? "raw",
       rawKey,
       options.algorithm,
       options.extractable ?? false,
