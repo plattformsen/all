@@ -303,11 +303,40 @@ export const Sha512HmacCryptoKey: Transformer<string, Promise<CryptoKey>> =
   });
 
 /**
- * Predefined CryptoKey transformer for AES-GCM.
+ * Predefined CryptoKey transformer for AES-GCM-128.
+ *
+ * @remarks
+ * The key length must be 16 bytes (128 bits).
  */
-export const AesGcmCryptoKey: Transformer<string, Promise<CryptoKey>> =
+export const AesGcm128CryptoKey: Transformer<string, Promise<CryptoKey>> =
   cryptoKey({
     format: "raw",
-    algorithm: { name: "AES-GCM" },
+    algorithm: { name: "AES-GCM", length: 128 },
+    keyUsages: ["encrypt", "decrypt"],
+  });
+
+/**
+ * Predefined CryptoKey transformer for AES-GCM-192.
+ *
+ * @remarks
+ * The key length must be 24 bytes (192 bits).
+ */
+export const AesGcm256CryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "AES-GCM", length: 192 },
+    keyUsages: ["encrypt", "decrypt"],
+  });
+
+/**
+ * Predefined CryptoKey transformer for AES-GCM-256.
+ *
+ * @remarks
+ * The key length must be 32 bytes (256 bits).
+ */
+export const AesGcm192CryptoKey: Transformer<string, Promise<CryptoKey>> =
+  cryptoKey({
+    format: "raw",
+    algorithm: { name: "AES-GCM", length: 256 },
     keyUsages: ["encrypt", "decrypt"],
   });
