@@ -321,7 +321,7 @@ export const AesGcm128CryptoKey: Transformer<string, Promise<CryptoKey>> =
  * @remarks
  * The key length must be 24 bytes (192 bits).
  */
-export const AesGcm256CryptoKey: Transformer<string, Promise<CryptoKey>> =
+export const AesGcm192CryptoKey: Transformer<string, Promise<CryptoKey>> =
   cryptoKey({
     format: "raw",
     algorithm: { name: "AES-GCM", length: 192 },
@@ -334,7 +334,7 @@ export const AesGcm256CryptoKey: Transformer<string, Promise<CryptoKey>> =
  * @remarks
  * The key length must be 32 bytes (256 bits).
  */
-export const AesGcm192CryptoKey: Transformer<string, Promise<CryptoKey>> =
+export const AesGcm256CryptoKey: Transformer<string, Promise<CryptoKey>> =
   cryptoKey({
     format: "raw",
     algorithm: { name: "AES-GCM", length: 256 },
